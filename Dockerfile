@@ -8,3 +8,6 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 #docker run -d --name spring-app -p 8081:8081 springboot-cicd
 #docker ps -a
 #docker rm spring-app
+
+#docker start jenkins
+#docker ps -a
