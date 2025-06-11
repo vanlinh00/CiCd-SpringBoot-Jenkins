@@ -1,9 +1,9 @@
 pipeline {
     agent any
-
-    environment {
-        IMAGE_NAME = 'springboot-cicd-demo'
-    }
+//
+//     environment {
+//         IMAGE_NAME = 'springboot-cicd-demo'
+//     }
 
     stages {
         stage('Checkout') {
@@ -24,20 +24,20 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t $IMAGE_NAME .'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                // Stop old container if exists, then run new one
-                sh '''
-                    docker rm -f springboot-app || true
-                    docker run -d --name springboot-app -p 8081:8081 $IMAGE_NAME
-                '''
-            }
-        }
+//         stage('Build Docker Image') {
+//             steps {
+//                 sh 'docker build -t $IMAGE_NAME .'
+//             }
+//         }
+//
+//         stage('Deploy') {
+//             steps {
+//                 // Stop old container if exists, then run new one
+//                 sh '''
+//                     docker rm -f springboot-app || true
+//                     docker run -d --name springboot-app -p 8081:8081 $IMAGE_NAME
+//                 '''
+//             }
+//         }
     }
 }
