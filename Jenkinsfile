@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'
-        jdk 'JDK17'
-    }
+//     tools {
+//         maven 'Maven'
+//         jdk 'JDK17'
+//     }
 
     environment {
         IMAGE_NAME = 'springboot-cicd-demo'
