@@ -16,7 +16,7 @@ public class TestController {
     @GetMapping("/test")
     public ResponseEntity<?> register() {
 
-        return ResponseEntity.ok( "Nhìn tôi biểu diễn CI, CD này. Push code lên cái tự deploy lại");
+        return ResponseEntity.ok( "CI, CD Come");
     }
 
 }
