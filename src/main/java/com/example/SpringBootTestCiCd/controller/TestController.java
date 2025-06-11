@@ -16,7 +16,7 @@ public class TestController {
     @GetMapping("/test")
     public ResponseEntity<?> register() {
 
-        return ResponseEntity.ok( "chua sua code");
+        return ResponseEntity.ok( "chua sua code nhe");
     }
 
 }
