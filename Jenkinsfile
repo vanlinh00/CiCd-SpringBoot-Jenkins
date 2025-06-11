@@ -1,8 +1,8 @@
 pipeline {
     agent any
-   tools {
-                maven 'Maven3.8'
-            }
+    tools {
+        maven 'Maven3.8'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -15,25 +15,20 @@ pipeline {
                 sh 'mvn clean install -DskipTests'
             }
         }
+
         stage('Test') {
             steps {
                 sh 'mvn test'
             }
         }
-stage('Deploy') {
-    steps {
-        sh 'nohup java -jar target/SpringBootTestCiCd-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
-    }
-}
-stage('Run') {
-    steps {
-        sh 'nohup java -jar target/SpringBootTestCiCd-0.0.1-SNAPSHOT.jar &'
-    }
-}
 
-
-
-
-
+        stage('Deploy') {
+            steps {
+                // Dừng ứng dụng cũ nếu đang chạy
+                sh 'pkill -f SpringBootTestCiCd || true'
+                // Chạy ứng dụng mới
+                sh 'nohup java -jar target/SpringBootTestCiCd-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
+            }
+        }
     }
 }
