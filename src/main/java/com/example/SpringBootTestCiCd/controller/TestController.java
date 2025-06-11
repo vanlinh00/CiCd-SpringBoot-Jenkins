@@ -16,7 +16,7 @@ public class TestController {
     @GetMapping("/test")
     public ResponseEntity<?> register() {
 
-        return ResponseEntity.ok( " nhin nay tao da thay doi no");
+        return ResponseEntity.ok( " lan nay la lan 2");
     }
 
 }
