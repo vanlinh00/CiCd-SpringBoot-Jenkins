@@ -1,12 +1,19 @@
 pipeline {
     agent any
+
     tools {
-        maven 'Maven3.8'
+        maven 'Maven'
+        jdk 'JDK17'
     }
+
+    environment {
+        IMAGE_NAME = 'springboot-cicd-demo'
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/vanlinh00/CiCd-SpringBoot-Jenkins', branch: 'master'
+                git 'https://github.com/vanlinh00/CiCd-SpringBoot-Jenkins'
             }
         }
 
@@ -22,12 +29,19 @@ pipeline {
             }
         }
 
+        stage('Build Docker Image') {
+            steps {
+                sh 'docker build -t $IMAGE_NAME .'
+            }
+        }
+
         stage('Deploy') {
             steps {
-                // Dừng ứng dụng cũ nếu đang chạy
-                sh 'pkill -f SpringBootTestCiCd || true'
-                // Chạy ứng dụng mới
-                sh 'nohup java -jar target/SpringBootTestCiCd-0.0.1-SNAPSHOT.jar > app.log 2>&1 &'
+                // Stop old container if exists, then run new one
+                sh '''
+                    docker rm -f springboot-app || true
+                    docker run -d --name springboot-app -p 8080:8080 $IMAGE_NAME
+                '''
             }
         }
     }
