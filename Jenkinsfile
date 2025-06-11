@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-//     tools {
-//         maven 'Maven'
-//         jdk 'JDK17'
-//     }
-
     environment {
         IMAGE_NAME = 'springboot-cicd-demo'
     }
@@ -40,7 +35,7 @@ pipeline {
                 // Stop old container if exists, then run new one
                 sh '''
                     docker rm -f springboot-app || true
-                    docker run -d --name springboot-app -p 8080:8080 $IMAGE_NAME
+                    docker run -d --name springboot-app -p 8081:8081 $IMAGE_NAME
                 '''
             }
         }
