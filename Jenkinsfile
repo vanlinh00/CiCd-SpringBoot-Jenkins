@@ -45,7 +45,7 @@ pipeline {
         IMAGE_NAME = 'springboot-cicd'
         CONTAINER_NAME = 'spring-app'
         PORT_OUT = '8089'
-        PORT_IN = '8080'
+        PORT_IN = '8089'
     }
 
     stages {
